@@ -1,5 +1,6 @@
 package com.civileva.nata.cocktail.startestproject
 
+import com.civileva.nata.cocktail.startestproject.data.model.Person
 import com.civileva.nata.cocktail.startestproject.db.entity.MovieEntity
 import com.civileva.nata.cocktail.startestproject.db.entity.PersonEntity
 import com.civileva.nata.cocktail.startestproject.db.entity.aggr.PersonMovieAggr
@@ -47,7 +48,7 @@ class PersonDaoTest {
 	}
 
 	companion object {
-		val expectedPerson = PersonEntity(1, "Luke Skywalker", true, 2)
+		val expectedPerson = PersonEntity(1, "Luke Skywalker", Person.GENDER.FEMALE, 2)
 		val expectedMovie = MovieEntity(
 			4,
 			title = "A New Hope",

@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.devtools.ksp'
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
 }
 
 android {
@@ -15,14 +16,15 @@ android {
         versionCode 1
         versionName "1.0"
 
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         //ОБЯЗАТЕЛЬНО ДОБАВИТЬ room.incremental":"true , иначе сборка тормозит
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += [
-                        "room.schemaLocation":"$projectDir/schemas".toString(),
-                        "room.incremental":"true"
+                        "room.schemaLocation": "$projectDir/schemas".toString(),
+                        "room.incremental"   : "true"
                 ]
             }
         }
@@ -30,12 +32,17 @@ android {
 
     buildTypes {
         release {
-            buildConfigField("String", "DATABASE_NAME", "StarWarsDB.db")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
         }
     }
+
+    buildTypes.each {
+        it.buildConfigField 'String', 'DATABASE_NAME', '\"StarWarsDB.db\"'
+        it.buildConfigField 'String', 'BASE_URL', '\"https://swapi.dev/api//\"'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -60,4 +67,12 @@ dependencies {
     def room_version = "2.5.2"
     implementation "androidx.room:room-runtime:$room_version"
     ksp "androidx.room:room-compiler:$room_version"
+
+    //RETROFIT:
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
 }

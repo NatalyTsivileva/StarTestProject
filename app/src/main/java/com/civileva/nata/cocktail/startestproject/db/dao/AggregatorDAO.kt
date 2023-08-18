@@ -18,18 +18,21 @@ interface AggregatorDAO {
 
 	@Insert
 	fun bindPersonWithMovie(aggregator: PersonMovieAggr)
+
 	@Insert
 	fun bindPersonsWithMovie(aggregators: List<PersonMovieAggr>)
 
 
 	@Insert
 	fun bindStarshipWithMovie(aggregator: StarshipMovieAggr)
+
 	@Insert
 	fun bindStarshipsWithMovie(aggregators: List<StarshipMovieAggr>)
 
 
 	@Insert
 	fun bindPlanetWithMovie(aggregator: PlanetMovieAggr)
+
 	@Insert
 	fun bindPlanetsWithMovie(aggregators: List<PlanetMovieAggr>)
 

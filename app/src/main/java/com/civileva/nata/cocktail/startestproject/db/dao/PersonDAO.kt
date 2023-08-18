@@ -19,7 +19,7 @@ interface PersonDAO {
 
 	@Transaction
 	@Query("SELECT * FROM Person")
-	fun getPersonsWithMovies():List<PersonWithMovie>
+	fun getPersonsWithMovies(): List<PersonWithMovie>
 
 	@Transaction
 	@Query("SELECT * FROM FavoritePerson")

@@ -9,6 +9,5 @@ data class MovieEntity(
 	val id: Int,
 	val title: String,
 	val director: String,
-	val producer: String,
-	val discription: String
+	val producer: String
 )

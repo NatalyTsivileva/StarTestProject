@@ -1,7 +1,6 @@
 package com.civileva.nata.cocktail.startestproject.db.entity.dto
 
 import androidx.room.Embedded
-import androidx.room.Junction
 import androidx.room.Relation
 import com.civileva.nata.cocktail.startestproject.db.entity.PersonEntity
 import com.civileva.nata.cocktail.startestproject.db.entity.favorite.FavoritePersonEntity
