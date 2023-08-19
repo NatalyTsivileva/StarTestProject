@@ -3,14 +3,15 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="wrap_content">
 
 	<TextView
 		android:id="@+id/name"
 		style="@style/Widget.MaterialComponents.TextView.ItemInfoText"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:layout_constraintTop_toTopOf="parent"
+		android:paddingTop="@dimen/d1_5"
+		app:layout_constraintBottom_toTopOf="@id/diameter"
 		tools:text="name" />
 
 
@@ -19,7 +20,7 @@
 		style="@style/Widget.MaterialComponents.TextView.ItemInfoText"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:layout_constraintTop_toBottomOf="@id/name"
+		app:layout_constraintBottom_toTopOf="@id/population"
 		tools:text="diametr" />
 
 
@@ -28,6 +29,35 @@
 		style="@style/Widget.MaterialComponents.TextView.ItemInfoText"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:layout_constraintTop_toBottomOf="@id/diameter"
+		android:layout_marginBottom="@dimen/d1_5"
+		app:layout_constraintBottom_toBottomOf="parent"
 		tools:text="population" />
+
+	<com.google.android.material.card.MaterialCardView
+		android:id="@+id/imageCard"
+		style="@style/Widget.MaterialComponents.CardView.ItemInfoCard"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		app:cardBackgroundColor="@android:color/darker_gray"
+		app:layout_constraintDimensionRatio="2:1"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:scaleType="centerCrop"
+			android:src="@drawable/img_planets" />
+	</com.google.android.material.card.MaterialCardView>
+
+	<com.google.android.material.card.MaterialCardView
+		style="@style/Widget.MaterialComponents.CardView.PlaceholderCard"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:paddingTop="@dimen/d2"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="@id/imageCard"
+		app:layout_constraintStart_toStartOf="@id/imageCard"
+		app:layout_constraintTop_toTopOf="@id/name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

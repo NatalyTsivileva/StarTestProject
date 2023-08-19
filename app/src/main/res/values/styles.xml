@@ -2,7 +2,7 @@
 <resources>
 
 	<style name="Widget.MaterialComponents.TextView.ItemInfoText">
-		<item name="font">@font/montserrat_regular</item>
+		<item name="android:fontFamily">@font/montserrat_regular</item>
 		<item name="android:textSize">@dimen/s1_5</item>
 		<item name="android:textColor">@color/black</item>
 		<item name="android:layout_marginStart">@dimen/d2</item>
@@ -11,8 +11,30 @@
 		<item name="android:elevation">@dimen/d1</item>
 	</style>
 
+	<style name="Widget.MaterialComponents.TextView.LogoText">
+		<item name="android:fontFamily">@font/starjedi</item>
+		<item name="android:textSize">@dimen/s8</item>
+		<item name="android:textColor">@color/yellow</item>
+		<item name="android:maxLines">2</item>
+		<item name="android:gravity">center</item>
+		<item name="android:layout_marginStart">@dimen/d2</item>
+		<item name="android:layout_marginEnd">@dimen/d2</item>
+	</style>
+
 	<style name="Widget.MaterialComponents.CardView.ItemInfoCard">
 		<item name="cardCornerRadius">@dimen/d2</item>
 	</style>
 
+	<style name="Widget.MaterialComponents.CardView.PlaceholderCard">
+		<item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
+		<item name="cardBackgroundColor">@color/white_80</item>
+	</style>
+
+	<style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+		<item name="cornerFamily">rounded</item>
+		<item name="cornerSizeTopLeft">0dp</item>
+		<item name="cornerSizeTopRight">0dp</item>
+		<item name="cornerSizeBottomLeft">@dimen/d2</item>
+		<item name="cornerSizeBottomRight">@dimen/d2</item>
+	</style>
 </resources>

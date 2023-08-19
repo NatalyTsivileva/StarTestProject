@@ -1,5 +1,6 @@
 package com.civileva.nata.cocktail.startestproject.presentation.ui.search
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -11,37 +12,33 @@ import com.civileva.nata.cocktail.startestproject.network.repository.dispatcher.
 import com.civileva.nata.cocktail.startestproject.presentation.ui.Loading
 import com.civileva.nata.cocktail.startestproject.presentation.ui.RequestState
 import com.civileva.nata.cocktail.startestproject.presentation.ui.Success
-import com.civileva.nata.cocktail.startestproject.presentation.ui.usecase.SearchInfoUseCase
-import com.civileva.nata.cocktail.startestproject.presentation.ui.usecase.SearchUseCase
+import com.civileva.nata.cocktail.startestproject.presentation.ui.Undefined
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class SearchViewModel(
 	private val repository: IStarWarsRepository,
-	private val dispatcher: IDispatcher,
-	private val searchUseCase: SearchUseCase
+	private val dispatcher: IDispatcher
 ) : ViewModel() {
 
 
-	private val _searched = MutableStateFlow<RequestState<*>>(Loading)
+	private val _searched = MutableStateFlow<RequestState<*>>(Undefined)
 	val searched: StateFlow<RequestState<*>> = _searched
 
-	//fun search(text: String) {
-	/*viewModelScope.launch(dispatcher.getDefault()) {
-		val items = mutableListOf<ListItem>()
-		items += repository.findPerson(text)
-		items += repository.findPlanet(text)
-		items += repository.findStarship(text)
-
-		_searched.value = Success(items)
-	}*/
-	//}//
 
 	fun search(text: String) {
+		_searched.value = Loading
 		viewModelScope.launch(dispatcher.getDefault()) {
-			val result = searchUseCase.searchPersonPlanetStarship(text, repository)
-			_searched.value = Success(result)
+			try {
+				repository.searchItems(text).collect {
+					_searched.value = Success(it)
+				}
+			} catch (e: Exception) {
+				_searched.value =
+					com.civileva.nata.cocktail.startestproject.presentation.ui.Error(e.message)
+				Log.d("ERR",e.message?:"")
+			}
 		}
 	}
 
@@ -52,12 +49,10 @@ class SearchViewModel(
 			val client = module.provideClient()
 			val service = module.provideRetrofit(client)
 			val dispatcher = StarWarsDispatcher()
-			val useCase = SearchInfoUseCase()
 
 			return SearchViewModel(
 				StarWarsRepository(service, dispatcher),
-				dispatcher,
-				useCase
+				dispatcher
 			) as T
 		}
 	}

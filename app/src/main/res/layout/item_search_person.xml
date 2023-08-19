@@ -10,6 +10,7 @@
 		style="@style/Widget.MaterialComponents.TextView.ItemInfoText"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
+		android:paddingTop="@dimen/d1_5"
 		app:layout_constraintBottom_toTopOf="@id/gender"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +37,7 @@
 
 
 	<com.google.android.material.card.MaterialCardView
+		android:id="@+id/imageCard"
 		style="@style/Widget.MaterialComponents.CardView.ItemInfoCard"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
@@ -48,7 +50,17 @@
 		<androidx.appcompat.widget.AppCompatImageView
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:src="@android:drawable/ic_dialog_info" />
+			android:scaleType="centerCrop"
+			android:src="@drawable/img_personage" />
 	</com.google.android.material.card.MaterialCardView>
 
+	<com.google.android.material.card.MaterialCardView
+		style="@style/Widget.MaterialComponents.CardView.PlaceholderCard"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:paddingTop="@dimen/d2"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="@id/imageCard"
+		app:layout_constraintStart_toStartOf="@id/imageCard"
+		app:layout_constraintTop_toTopOf="@id/name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,22 +25,22 @@ class SearchRecyclerAdapter() : ListAdapter<ListItem, ListItemViewHolder>(search
 		when (viewType) {
 			PERSON_TYPE -> {
 				val layout = R.layout.item_search_person
-				val view = LayoutInflater.from(parent.context).inflate(layout, parent)
+				val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
 				SearchPersonViewHolder(view)
 			}
 			STARSHIP_TYPE -> {
 				val layout = R.layout.item_search_starship
-				val view = LayoutInflater.from(parent.context).inflate(layout, parent)
+				val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
 				SearchStarshipViewHolder(view)
 			}
 			PLANET_TYPE -> {
 				val layout = R.layout.item_search_planet
-				val view = LayoutInflater.from(parent.context).inflate(layout, parent)
+				val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
 				SearchPlanetViewHolder(view)
 			}
 			else -> {
 				val layout = R.layout.item_empty
-				val view = LayoutInflater.from(parent.context).inflate(layout, parent)
+				val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
 				ListItemViewHolder(view)
 			}
 

@@ -1,37 +1,87 @@
 package com.civileva.nata.cocktail.startestproject.viewmodel
 
-import com.civileva.nata.cocktail.startestproject.network.NetworkModule
+import com.civileva.nata.cocktail.startestproject.data.model.*
+import com.civileva.nata.cocktail.startestproject.network.repository.dispatcher.IDispatcher
 import com.civileva.nata.cocktail.startestproject.network.repository.dispatcher.TestStarWarsDispatcher
 import com.civileva.nata.cocktail.startestproject.presentation.ui.Loading
 import com.civileva.nata.cocktail.startestproject.presentation.ui.Success
 import com.civileva.nata.cocktail.startestproject.presentation.ui.search.SearchViewModel
-import com.civileva.nata.cocktail.startestproject.usecase.SearchSuccessUseCase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Test
 
 class SearchViewModelTest {
+	@OptIn(ExperimentalCoroutinesApi::class)
 	@Test
-	fun t() = runTest {
-		val module = NetworkModule()
-		val client = module.provideClient()
-		val service = module.provideRetrofit(client)
+	fun `when`() = runTest {
 		val dispatcher = TestStarWarsDispatcher()
-		val useCase = SearchSuccessUseCase()
 		val repository = TestRepository()
-		val viewModel = SearchViewModel(repository, dispatcher, useCase)
+		val viewModel = SearchViewModel(repository, dispatcher)
+
+		val emittedData = emitTestData(repository,dispatcher, backgroundScope, movieTestData)
+		viewModel.search("")
+ 		Assert.assertEquals(movieTestData, emittedData)
+
+		println("TEST DATA=${viewModel.searched.value}")
 
 
-		Assert.assertEquals(Loading::class, viewModel.searched.value::class)
-		repository.emit(TestRepository.movieTestData)
+	}
+	suspend fun emitTestData(
+		repository: TestRepository,
+		dispatcher: IDispatcher,
+		scope: CoroutineScope,
+		newItems: List<ListItem>
+	): List<ListItem> {
 
+		var resultList = listOf<ListItem>()
 
-		Assert.assertEquals(Success::class, viewModel.searched.value::class)
-		repository.searchItems("")
-		Assert.assertEquals(
-			TestRepository.movieTestData,
-			(viewModel.searched.value as? Success)?.data
-		)
+		scope.launch(dispatcher.getDefault()) {
+			repository.searchItems("").collect {
+				resultList = it
+			}
+		}
 
+		repository.emit(newItems)
+
+		return resultList
+	}
+
+	companion object {
+		val planetTestData = (0 until 10).map {
+			Planet(
+				id = it,
+				name = "planet${it}",
+				diameter = 100,
+				populationInfo = "population${it}"
+			)
+		}
+		val personTestData = (10 until 18).map {
+			Person(
+				id = it,
+				name = "person${it}",
+				gender = Person.GENDER.MALE,
+				starshipsCount = it
+			)
+		}
+		val starshipTestData = (18 until 25).map {
+			Starship(
+				id = it,
+				name = "starship${it}",
+				model = "starship${it}",
+				manufacturer = "starship${it}",
+				passengersInfo = "passenger${it}"
+			)
+		}
+		val movieTestData = (0 until 16).map {
+			Movie(
+				id = it,
+				name = "movie$it",
+				director = "director$it",
+				producer = "producer$it"
+			)
+		}
 	}
 }

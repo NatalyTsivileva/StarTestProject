@@ -5,11 +5,12 @@ import kotlinx.coroutines.flow.Flow
 
 
 interface IStarWarsRepository {
-	suspend fun getPerson(name: String?): List<Person>
-	suspend fun getStarship(name: String?): List<Starship>
-	suspend fun getPlanet(name: String?): List<Planet>
+
+	fun searchItems(text: String): Flow<List<ListItem>>
 
 	suspend fun getAllMovie(): List<Movie>
 
-	fun searchItems(text: String): Flow<List<ListItem>>
+	suspend fun getPerson(name: String?): List<Person>
+	suspend fun getStarship(name: String?): List<Starship>
+	suspend fun getPlanet(name: String?): List<Planet>
 }
