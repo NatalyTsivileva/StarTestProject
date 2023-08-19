@@ -1,4 +1,4 @@
-package com.civileva.nata.cocktail.startestproject
+package com.civileva.nata.cocktail.startestproject.model
 
 import com.civileva.nata.cocktail.startestproject.data.model.Person
 import com.civileva.nata.cocktail.startestproject.db.entity.PersonEntity

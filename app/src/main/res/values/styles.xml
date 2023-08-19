@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="Widget.MaterialComponents.TextView.ItemInfoText">
+		<item name="font">@font/montserrat_regular</item>
+		<item name="android:textSize">@dimen/s1_5</item>
+		<item name="android:textColor">@color/black</item>
+		<item name="android:layout_marginStart">@dimen/d2</item>
+		<item name="android:layout_marginEnd">@dimen/d2</item>
+		<item name="android:layout_marginBottom">@dimen/d1</item>
+		<item name="android:elevation">@dimen/d1</item>
+	</style>
+
+	<style name="Widget.MaterialComponents.CardView.ItemInfoCard">
+		<item name="cardCornerRadius">@dimen/d2</item>
+	</style>
+
+</resources>

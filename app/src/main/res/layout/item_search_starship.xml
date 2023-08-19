@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<TextView
+		android:id="@+id/name"
+		style="@style/Widget.MaterialComponents.TextView.ItemInfoText"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:text="name" />
+
+
+	<TextView
+		android:id="@+id/model"
+		style="@style/Widget.MaterialComponents.TextView.ItemInfoText"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:layout_constraintTop_toBottomOf="@id/name"
+		tools:text="model" />
+
+
+	<TextView
+		android:id="@+id/manufacturer"
+		style="@style/Widget.MaterialComponents.TextView.ItemInfoText"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:layout_constraintTop_toBottomOf="@id/model"
+		tools:text="manufacturer" />
+
+
+	<TextView
+		android:id="@+id/passengers"
+		style="@style/Widget.MaterialComponents.TextView.ItemInfoText"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:layout_constraintTop_toBottomOf="@id/manufacturer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

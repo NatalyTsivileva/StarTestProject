@@ -17,7 +17,7 @@ object MovieModelConverter {
 	fun toMovie(entity: MovieEntity): Movie {
 		return Movie(
 			id = entity.id,
-			title = entity.title,
+			name = entity.title,
 			director = entity.director,
 			producer = entity.producer
 		)

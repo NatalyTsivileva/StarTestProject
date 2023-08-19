@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<dimen name="d0_5">4dp</dimen>
+	<dimen name="d1">8dp</dimen>
+	<dimen name="d1_5">12dp</dimen>
+
+	<dimen name="d2">16dp</dimen>
+	<dimen name="d2_5">20dp</dimen>
+
+	<dimen name="d3">24dp</dimen>
+	<dimen name="d3_5">28dp</dimen>
+
+	<dimen name="d4">32dp</dimen>
+	<dimen name="d4_5">40dp</dimen>
+
+	<dimen name="d48">384dp</dimen>
+
+	<dimen name="s1">8sp</dimen>
+	<dimen name="s1_5">12sp</dimen>
+</resources>

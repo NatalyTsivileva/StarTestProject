@@ -1,4 +1,4 @@
-package com.civileva.nata.cocktail.startestproject
+package com.civileva.nata.cocktail.startestproject.model
 
 import com.civileva.nata.cocktail.startestproject.data.model.Movie
 import com.civileva.nata.cocktail.startestproject.db.entity.MovieEntity
@@ -28,7 +28,7 @@ class MovieNetworkModelTest {
 		val expectedMovie = listOf(
 			Movie(
 				id = 4,
-				title = "A New Hope",
+				name = "A New Hope",
 				director = "George Lucas",
 				producer = "Gary Kurtz, Rick McCallum"
 			)

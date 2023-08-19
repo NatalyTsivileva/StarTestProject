@@ -1,11 +1,11 @@
 package com.civileva.nata.cocktail.startestproject.data.model
 
 data class Person(
-	val id: Int,
-	val name: String,
+	override val id: Int,
+	override val name: String,
 	val gender: GENDER,
 	val starshipsCount: Int,
-) {
+) : ListItem() {
 	enum class GENDER {
 		MALE, FEMALE, UNDEFINED
 	}

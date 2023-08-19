@@ -73,6 +73,16 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
 
+    //Для сериализации Network-моделей, для их тестирования
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
+    def lifecycle_version = "2.6.1"
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    //для "by viewModels{}
+    implementation "androidx.fragment:fragment-ktx:1.6.1"
+
+    //для StandartTestDispatcher
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 }

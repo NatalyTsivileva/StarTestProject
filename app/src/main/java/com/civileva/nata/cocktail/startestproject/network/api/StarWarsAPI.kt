@@ -9,13 +9,13 @@ import retrofit2.http.Query
 
 interface StarWarsAPI {
 	@GET("people")
-	suspend fun getPersons(@Query("search") name: String): PersonNetworkModel
+	suspend fun getPersons(@Query("search") name: String? = null): PersonNetworkModel
 
 	@GET("starships")
-	suspend fun getStarships(@Query("search") name: String): StarhipNetworkModel
+	suspend fun getStarships(@Query("search") name: String? = null): StarhipNetworkModel
 
 	@GET("planets")
-	suspend fun getPlanets(@Query("search") name: String): PlanetNetworkModel
+	suspend fun getPlanets(@Query("search") name: String? = null): PlanetNetworkModel
 
 	@GET("films")
 	suspend fun getFilms(): MovieNetworkModel
