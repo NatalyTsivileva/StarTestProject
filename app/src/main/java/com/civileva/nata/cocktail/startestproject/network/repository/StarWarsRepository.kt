@@ -1,5 +1,6 @@
 package com.civileva.nata.cocktail.startestproject.network.repository
 
+import androidx.room.Database
 import com.civileva.nata.cocktail.startestproject.data.model.*
 import com.civileva.nata.cocktail.startestproject.network.api.StarWarsAPI
 import com.civileva.nata.cocktail.startestproject.network.converter.MovieModelConverter
@@ -13,17 +14,19 @@ import kotlinx.coroutines.withContext
 
 class StarWarsRepository(
 	private val api: StarWarsAPI,
-	private val dispatcher: IDispatcher
+	private val dispatcher: IDispatcher,
+	private val database: Database? = null
 ) : IStarWarsRepository {
 
-	override suspend fun getPerson(name: String?): List<Person> = withContext(dispatcher.getIO()) {
-		val networkModel = api.getPersons(name)
-		val entityList = networkModel.personData.map { PersonModelConverter.toPersonEntity(it) }
-		//TODO:добавить кэширование - должны обновить при Swipe Refresh
-		entityList.map { PersonModelConverter.toPerson(it) }
-	}
+	override suspend fun getPerson(name: String?, updated: Boolean): List<Person> =
+		withContext(dispatcher.getIO()) {
+			//TODO:добавить кэширование  - должны обновить при Swipe Refresh
+			val networkModel = api.getPersons(name)
+			val entityList = networkModel.personData.map { PersonModelConverter.toPersonEntity(it) }
+			entityList.map { PersonModelConverter.toPerson(it) }
+		}
 
-	override suspend fun getStarship(name: String?): List<Starship> =
+	override suspend fun getStarship(name: String?, updated: Boolean): List<Starship> =
 		withContext(dispatcher.getIO()) {
 			val networkModel = api.getStarships(name)
 			val entityList =
@@ -32,24 +35,26 @@ class StarWarsRepository(
 			entityList.map { StarshipModelConverter.toStarship(it) }
 		}
 
-	override suspend fun getPlanet(name: String?): List<Planet> = withContext(dispatcher.getIO()) {
-		val networkModel = api.getPlanets(name)
-		val entityList = networkModel.planetData.map { PlanetModelConverter.toPlanetEntity(it) }
-		//TODO:добавить кэширование - должны обновить при Swipe Refresh
-		entityList.map { PlanetModelConverter.toPlanet(it) }
-	}
+	override suspend fun getPlanet(name: String?, updated: Boolean): List<Planet> =
+		withContext(dispatcher.getIO()) {
+			val networkModel = api.getPlanets(name)
+			val entityList = networkModel.planetData.map { PlanetModelConverter.toPlanetEntity(it) }
+			//TODO:добавить кэширование - должны обновить при Swipe Refresh
+			entityList.map { PlanetModelConverter.toPlanet(it) }
+		}
 
-	override suspend fun getAllMovie(): List<Movie> = withContext(dispatcher.getIO()) {
-		val networkModel = api.getFilms()
-		val entity = networkModel.movieData.map { MovieModelConverter.toMovieEntity(it) }
-		//TODO: добавить кэширование.
-		// Добавить данные в таблицу Movie, добавить данные
-		// в аггрегатные таблицы PerdonMovieAggr, PlanetMovieAggr, StarshipMovieAggr
-		entity.map { MovieModelConverter.toMovie(it) }
-	}
+	override suspend fun getAllMovie(updated: Boolean): List<Movie> =
+		withContext(dispatcher.getIO()) {
+			val networkModel = api.getFilms()
+			val entity = networkModel.movieData.map { MovieModelConverter.toMovieEntity(it) }
+			//TODO: добавить кэширование.
+			// Добавить данные в таблицу Movie, добавить данные
+			// в аггрегатные таблицы PerdonMovieAggr, PlanetMovieAggr, StarshipMovieAggr
+			entity.map { MovieModelConverter.toMovie(it) }
+		}
 
-	override fun searchItems(text: String): Flow<List<ListItem>> = flow {
-		val list = getPerson(text) + getPlanet(text) + getStarship(text)
+	override fun searchItems(text: String, updated: Boolean): Flow<List<ListItem>> = flow {
+		val list = getPerson(text, updated) + getPlanet(text, updated) + getStarship(text, updated)
 		emit(list)
 	}
 }

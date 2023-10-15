@@ -27,11 +27,11 @@ class SearchViewModel(
 	val searched: StateFlow<RequestState<*>> = _searched
 
 
-	fun search(text: String) {
+	fun search(text: String, update: Boolean = false) {
 		_searched.value = Loading
 		viewModelScope.launch(dispatcher.getDefault()) {
 			try {
-				repository.searchItems(text).collect {
+				repository.searchItems(text, update).collect {
 					_searched.value = Success(it)
 				}
 			} catch (e: Exception) {
