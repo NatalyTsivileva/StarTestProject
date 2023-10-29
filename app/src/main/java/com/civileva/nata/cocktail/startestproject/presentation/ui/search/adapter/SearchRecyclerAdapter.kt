@@ -10,7 +10,7 @@ import com.civileva.nata.cocktail.startestproject.data.model.Person
 import com.civileva.nata.cocktail.startestproject.data.model.Planet
 import com.civileva.nata.cocktail.startestproject.data.model.Starship
 
-class SearchRecyclerAdapter() : ListAdapter<ListItem, ListItemViewHolder>(searchDiffUtils) {
+class SearchRecyclerAdapter : ListAdapter<ListItem, ListItemViewHolder>(searchDiffUtils) {
 
 
 	override fun getItemViewType(position: Int): Int = when (getItem(position)) {

@@ -1,7 +1,6 @@
 package com.civileva.nata.cocktail.startestproject.network.repository.dispatcher
 
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 

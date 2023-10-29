@@ -2,7 +2,9 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.devtools.ksp'
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
+    id('org.jetbrains.kotlin.plugin.serialization') version "1.8.10"
+    id('com.google.dagger.hilt.android')
+    id('kotlin-kapt')
 }
 
 android {
@@ -51,7 +53,6 @@ android {
         jvmTarget = '1.8'
     }
 }
-
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -85,4 +86,13 @@ dependencies {
 
     //для StandartTestDispatcher
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
+    //Для Hilt
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+
+}
+
+kapt {
+    correctErrorTypes true
 }

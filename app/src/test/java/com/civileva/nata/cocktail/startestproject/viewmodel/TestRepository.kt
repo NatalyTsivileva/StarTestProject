@@ -2,11 +2,8 @@ package com.civileva.nata.cocktail.startestproject.viewmodel
 
 import com.civileva.nata.cocktail.startestproject.data.model.*
 import com.civileva.nata.cocktail.startestproject.network.repository.IStarWarsRepository
-import com.civileva.nata.cocktail.startestproject.network.repository.dispatcher.IDispatcher
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.launch
 
 class TestRepository : IStarWarsRepository {
 	private val items = MutableSharedFlow<List<ListItem>>()

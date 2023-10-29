@@ -3,8 +3,6 @@ package com.civileva.nata.cocktail.startestproject.viewmodel
 import com.civileva.nata.cocktail.startestproject.data.model.*
 import com.civileva.nata.cocktail.startestproject.network.repository.dispatcher.IDispatcher
 import com.civileva.nata.cocktail.startestproject.network.repository.dispatcher.TestStarWarsDispatcher
-import com.civileva.nata.cocktail.startestproject.presentation.ui.Loading
-import com.civileva.nata.cocktail.startestproject.presentation.ui.Success
 import com.civileva.nata.cocktail.startestproject.presentation.ui.search.SearchViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi

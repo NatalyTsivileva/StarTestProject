@@ -1,7 +1,7 @@
 package com.civileva.nata.cocktail.startestproject.network.repository
 
-import androidx.room.Database
 import com.civileva.nata.cocktail.startestproject.data.model.*
+import com.civileva.nata.cocktail.startestproject.db.StarWarsDB
 import com.civileva.nata.cocktail.startestproject.network.api.StarWarsAPI
 import com.civileva.nata.cocktail.startestproject.network.converter.MovieModelConverter
 import com.civileva.nata.cocktail.startestproject.network.converter.PersonModelConverter
@@ -15,7 +15,7 @@ import kotlinx.coroutines.withContext
 class StarWarsRepository(
 	private val api: StarWarsAPI,
 	private val dispatcher: IDispatcher,
-	private val database: Database? = null
+	private val database: StarWarsDB? = null
 ) : IStarWarsRepository {
 
 	override suspend fun getPerson(name: String?, updated: Boolean): List<Person> =
